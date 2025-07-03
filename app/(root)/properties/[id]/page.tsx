@@ -1,12 +1,12 @@
 import { getPropertyById } from '@/lib/actions/property.actions'
 import Image from 'next/image'
 
-interface Props {
-  params: { id: string }
+type Props {
+  params: Promise<{ id: string }>
 }
 
 export default async function PropertyDetails({ params }: Props) {
-  const { id } = params
+  const { id } = await params
   const property = await getPropertyById(id)
 
   return (
